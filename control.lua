@@ -55,7 +55,10 @@ local function on_pre_player_crafted_item(e)
 
         -- add new item
         player.begin_crafting { count = front_craft.count, recipe = front_craft.recipe, silent = true }
-        if crafting_queue_progress > 0 then player.crafting_queue_progress = crafting_queue_progress end
+        if crafting_queue_progress > 0 then
+            if crafting_queue_progress > 1 then crafting_queue_progress = 0.999999999999999999999 end
+            player.crafting_queue_progress = crafting_queue_progress
+        end
 
         -- add rest of queue
         for i = #save_queue, 1, -1 do
