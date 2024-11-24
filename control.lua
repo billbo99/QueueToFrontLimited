@@ -5,6 +5,9 @@ local function on_pre_player_crafted_item(e)
     local player      = game.players[e.player_index]
     local save_queue  = {}
     local front_craft = nil
+
+    if #player.crafting_queue == 1 then return nil end
+
     if not storage.queue_to_front then
         storage.queue_to_front = {}
     end
